@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab 52 - Giỏ hàng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+    table {
+      margin: 10px auto;
+      border-collapse: collapse;
+      width: 300px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #999;
+      text-align: center;
+    }
+    button {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>DANH MỤC HÀNG HÓA</h2>
+  <table>
+    <tr>
+      <td>iPhone9</td>
+      <td>$2700</td>
+      <td><button onclick="them(this)">Thêm</button></td>
+    </tr>
+    <tr>
+      <td>Sumsung Star</td>
+      <td>$1500</td>
+      <td><button onclick="them(this)">Thêm</button></td>
+    </tr>
+    <tr>
+      <td>Nokia 2020</td>
+      <td>$1200</td>
+      <td><button onclick="them(this)">Thêm</button></td>
+    </tr>
+    <tr>
+      <td>Sony Xperia</td>
+      <td>$1700</td>
+      <td><button onclick="them(this)">Thêm</button></td>
+    </tr>
+  </table>
+
+  <h2>GIỎ HÀNG CỦA BẠN</h2>
+  <table id="cart">
+    <!-- Các sản phẩm thêm sẽ hiển thị ở đây -->
+  </table>
+
+  <h2>TỔNG SỐ TIỀN: $<span id="tong">0</span></h2>
+
+  <script>
+    function them(button) {
+      var row = button.parentElement.parentElement.cloneNode(true);
+      var btnXoa = row.getElementsByTagName("button")[0];
+      btnXoa.innerText = "Xóa";
+      btnXoa.setAttribute("onclick", "xoa(this)");
+      document.getElementById("cart").appendChild(row);
+      tinhTong();
+    }
+
+    function xoa(button) {
+      var row = button.parentElement.parentElement;
+      document.getElementById("cart").removeChild(row);
+      tinhTong();
+    }
+
+    function tinhTong() {
+      var cart = document.getElementById("cart");
+      var rows = cart.getElementsByTagName("tr");
+      var tong = 0;
+
+      for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].getElementsByTagName("td");
+        var price = parseFloat(cells[1].innerText.substr(1)); // loại bỏ $
+        tong += price;
+      }
+
+      document.getElementById("tong").innerText = tong;
+    }
+  </script>
+
+</body>
+</html>

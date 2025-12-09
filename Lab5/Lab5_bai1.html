@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Đặt mua iPhone 17 Pro Max</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 50px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    label {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      font-size: 20px;
+      padding: 5px 10px;
+      width: 80px;
+      text-align: center;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 6px 14px;
+      margin-left: 5px;
+    }
+
+    hr {
+      margin: 20px 0;
+    }
+
+    .result {
+      font-size: 22px;
+    }
+
+    .result span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+  
+    <label id="pro" data-price="1000000">iPhone 17 Pro Max</label>
+
+   
+    <input type="text" id="qty" placeholder="0">
+    
+   
+    <button onclick="display()">OK</button>
+
+    <hr>
+
+   
+    <div class="result">
+      <p><strong>Name:</strong> <span id="name"></span></p>
+      <p><strong>Amount:</strong> $<span id="amount"></span></p>
+    </div>
+  </div>
+
+  <script>
+    function display() {
+      var pro = document.getElementById("pro");
+      var qty = document.getElementById("qty");
+
+      var name = pro.innerText;
+      var price = parseFloat(pro.getAttribute("data-price"));
+      var quantity = parseInt(qty.value) || 0;
+
+      var amount = price * quantity;
+
+      document.getElementById("name").innerText = name;
+      document.getElementById("amount").innerText = amount;
+    }
+  </script>
+
+</body>
+</html>
